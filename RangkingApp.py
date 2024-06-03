@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from . import MenuApp as app_menu
+
 class RankingApp:
     def __init__(self, root, ranking_data):
         self.root = root
@@ -42,6 +44,7 @@ class RankingApp:
 
     def exit_app(self):
         self.root.destroy()
+        app_menu.start()
 
 # Data peringkat (contoh)
 ranking_data = {
@@ -55,6 +58,7 @@ ranking_data = {
 def start():
     # Inisialisasi Tkinter
     root = tk.Tk()
+    root.attributes("-fullscreen", True)
     app = RankingApp(root, ranking_data)
 
     # Menempatkan frame utama di tengah jendela

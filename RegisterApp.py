@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from . import LoginApp as app_login
 class RegisterApp:
     def __init__(self, root, username, password, nama_lengkap, prodi):
         self.root = root
@@ -91,12 +92,14 @@ class RegisterApp:
         password = self.password_entry.get().strip()
         if username == "a" and password == "a":
             messagebox.showinfo("login","Berhasil Login")
+            self.root.destroy()
+            app_login.start()
         else:
             messagebox.showinfo("login","Gagal Login")
 
     def exit_program(self):
-        exit()
-
+        self.root.destroy()
+        app_login.start()
 
 def start():
     root = tk.Tk()

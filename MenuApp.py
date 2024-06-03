@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from . import LoginApp as app_login
+from . import RangkingApp as app_ranking
+
 class MenuApp:
     def __init__(self, root, username, password):
         self.root = root
@@ -18,35 +21,32 @@ class MenuApp:
         self.welcome_label.grid(row=0, column=0, columnspan=2, pady=(50, 20))  # Padding atas diatur ke 50px
 
         # Button "Quiz"
-        self.login_button = tk.Button(frame, text="       Quiz       ", font=("Futura", 20), command=self.login)
+        self.login_button = tk.Button(frame, text="       Quiz       ", font=("Futura", 20), command=self.quizstart)
         self.login_button.grid(row=1, column=0, columnspan=2, pady=10)
 
         # Button "Lihat Peringkat"
-        self.signup_button = tk.Button(frame, text="Lihat Peringkat", font=("Futura", 20), command=self.register)
+        self.signup_button = tk.Button(frame, text="Lihat Peringkat", font=("Futura", 20), command=self.seeRank)
         self.signup_button.grid(row=2, column=0, columnspan=2, pady=10)
 
         # Button "Log Out"
-        self.exit_button = tk.Button(frame, text="     Log Out    ", font=("Futura", 20), command=self.exit_program)
+        self.exit_button = tk.Button(frame, text="     Log Out    ", font=("Futura", 20), command=self.back)
         self.exit_button.grid(row=3, column=0, columnspan=2, pady=10)
 
-    def login(self):
-        username = self.username_entry.get().strip()
-        password = self.password_entry.get().strip()
-        if username == "a" and password == "a":
-            messagebox.showinfo("login","Berhasil Login")
-        else:
-            messagebox.showinfo("login","Gagal Login")
+    def quizstart(self):
+        messagebox.showinfo("Quiz","Quiz di Mulai")
     
-    def register(self):
-        pass
+    def seeRank(self):
+        self.root.destroy()
+        app_ranking.start()
 
-    def exit_program(self):
-        exit()
+    def back(self):
+        self.root.destroy()
+        app_login.start()
 
 def start():
     # Inisialisasi Tkinter
     root = tk.Tk()
-    root.title("Login")
+    root.title("Menu")
     root.attributes("-fullscreen", True)  # Set fullscreen
 
     # Membuat instance dari LoginApp
